@@ -1,0 +1,11 @@
+{
+	"directed": false,
+	"vertices": ["A", "B", "C", "D"],
+	"edges": [
+		{"source": 1, "target": 2, "weight": 33},
+		{"source": 2, "target": 3, "weight": 34},
+		{"source": 3, "target": 0, "weight": 45},
+		{"source": 3, "target": 1, "weight": 77},
+		{"source": 2, "target": 0, "weight": 11}
+	]
+}
