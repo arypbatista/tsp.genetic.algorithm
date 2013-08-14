@@ -19,13 +19,10 @@
 #
 
 require "./classes/TSPGeneticAlgorithm.rb"
-require "./classes/TSPBruteForceAlgorithm.rb"
 require "./support/TSPGeneticAlgorithmSerializer.rb"
 require "./support/RGLGraphs.rb"
 require 'fileutils'
 require "./GraphTest.rb"
-
-TEST_BRUTE_FORCE = false
 
 OUTPUT_DIR = "output"
 
@@ -41,13 +38,13 @@ end
 
 
 SAMPLES_DIR = "samples"
-GRAPHS = [JSONGraphTest.new("graph1"),
+GRAPHS = [#JSONGraphTest.new("graph1"),
           #JSONGraphTest.new("graph2"),
-          JSONGraphTest.new("graph3"),
+          #JSONGraphTest.new("graph3"),
           #JSONGraphTest.new("graph4"),
-          JSONGraphTest.new("complex1"),
+          #JSONGraphTest.new("complex1"),
           #JSONGraphTest.new("complex2"),
-          JSONGraphTest.new("complex3"),
+          #JSONGraphTest.new("complex3"),
           #RandomGraphTest.new(),
           #RandomGraphTest.new(),
           RandomGraphTest.new()
@@ -66,31 +63,6 @@ GRAPHS.each { |graph_test|
   puts algorithm.to_s()  
   puts "-----------------------------------"
   puts "Elapsed time: " + genetic_time.to_s()
-  if TEST_BRUTE_FORCE
-    puts ""
-    puts "############################################"
-    puts "BruteForce Algorithm for " + graph_test.name
-    puts "############################################"
-    print "Testing algorithm... "
-    start_time = Time.now
-    result = TSPBruteForceAlgorithm.new().run(graph_test.graph)
-    brute_time = (Time.now - start_time)
-    print "OK\n"
-    puts result.to_s
-    puts "Elapsed time: " + brute_time.to_s()
-    
-    if brute_time < genetic_time
-      puts " "
-      puts "############################################"
-      puts "#####    ##    ## ## ######  ###############"
-      puts "##### ##### ## ## ## ######  ###############"
-      puts "#####   ###    ## ## #######################"
-      puts "##### ##### ## ## ##    ###  ###############"
-      puts "############################################"
-    else
-      
-    end
-  end
   puts ""
   if graph_test.respond_to? 'known_solution'
     puts "############################################"

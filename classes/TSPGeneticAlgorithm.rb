@@ -35,7 +35,7 @@ class TSPGeneticAlgorithm < GeneticAlgorithm
     super(graph, population_size, Traveller, max_generations, crossover_rate, mutation_rate)
     
     @minimum_spanning_tree = graph.minimum_spanning_tree
-    @weight_upper_bound = @minimum_spanning_tree.total_weight * 2
+    @weight_upper_bound = @minimum_spanning_tree.total_weight
   end
   
   def prepare_population(population)    

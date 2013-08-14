@@ -20,9 +20,9 @@ class GraphTest
 end
 
 class RandomGraphTest < GraphTest
-  @@MAX_NODES = 50
-  @@MIN_NODES = 10
-  @@MAX_EDGES = 10
+  @@MAX_NODES = 10
+  @@MIN_NODES = 3
+  @@MAX_EDGES = 8
   @@MAX_WEIGHT = 20
   @@MIN_WEIGHT = 4
   
@@ -51,9 +51,15 @@ class RandomGraphTest < GraphTest
       edges = []
       unconnected_vertices = Array.new(vertices)
       edge_count.times do |i|
-        other_vertex = unconnected_vertices.delete_at(random.rand(unconnected_vertices.size - 1))
-        if not gen_graph.has_vertex?(other_vertex) or not gen_graph.adjacent_vertices(other_vertex).include?(vertex)
-          edges.push([vertex, other_vertex, random.rand(@@MAX_WEIGHT - @@MIN_WEIGHT) + @@MIN_WEIGHT])
+        if unconnected_vertices.size > 0
+          if unconnected_vertices.size > 1
+            other_vertex = unconnected_vertices.delete_at(random.rand(unconnected_vertices.size - 1))
+          else
+            other_vertex = unconnected_vertices.delete_at(0)
+          end
+          if not gen_graph.has_vertex?(other_vertex) or not gen_graph.adjacent_vertices(other_vertex).include?(vertex)
+            edges.push([vertex, other_vertex, random.rand(@@MAX_WEIGHT - @@MIN_WEIGHT) + @@MIN_WEIGHT])
+          end
         end
       end
       gen_graph.add_edges(*edges)      

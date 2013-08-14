@@ -139,7 +139,7 @@ module RGL
       end
       each_edge do |u,v,w|
         edge_color = "black"
-        edge_color = "red" if path.include_subarray?([u,v]) || path.include_subarray?([v,u])
+        edge_color = "red" if u != v and (path.include_subarray?([u,v]) || path.include_subarray?([v,u]))
         graph << edge_class.new('from'     => u.to_s,
                                 'to'       => v.to_s,
                                 'label' => w.to_s,
